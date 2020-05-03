@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -386,7 +386,7 @@
 		4CD2C49D1C5A615600975A7A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = IQKeyboardManager;
 				TargetAttributes = {
 					4CD2C4A51C5A615600975A7A = {
@@ -398,7 +398,7 @@
 				};
 			};
 			buildConfigurationList = 4CD2C4A01C5A615600975A7A /* Build configuration list for PBXProject "IQKeyboardManager" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -483,7 +483,18 @@
 		4CD2C4AC1C5A615600975A7A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"ADDITIONAL_SDKS[arch=*]" = "";
+				"ALTERNATE_GROUP[sdk=*]" = "$(INSTALL_GROUP)";
+				"ALTERNATE_MODE[sdk=*]" = "$(INSTALL_MODE_FLAG)";
+				"ALTERNATE_OWNER[sdk=*]" = "$(INSTALL_OWNER)";
+				ALTERNATE_PERMISSIONS_FILES = "$(INSTALL_PERMISSION_FILES)";
+				"ALTERNATE_PERMISSIONS_FILES[sdk=*]" = "$(INSTALL_PERMISSION_FILES)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD)";
+				ASSET_PACK_MANIFEST_URL_PREFIX = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				"BUILD_VARIANTS[sdk=*]" = normal;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -513,11 +524,28 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				COPY_HEADERS_RUN_UNIFDEF = YES;
+				"COPY_HEADERS_UNIFDEF_FLAGS[sdk=*]" = "";
+				COPY_PHASE_STRIP = YES;
+				"COPY_PHASE_STRIP[sdk=*]" = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				"DEBUG_INFORMATION_FORMAT[sdk=*]" = dwarf;
+				DEPLOYMENT_LOCATION = YES;
+				"DEPLOYMENT_LOCATION[sdk=*]" = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				"DEPLOYMENT_POSTPROCESSING[sdk=*]" = YES;
+				DEVELOPMENT_ASSET_PATHS = YES;
+				DRIVERKIT_DEPLOYMENT_TARGET = DRIVEKIT19.0;
+				"DRIVERKIT_DEPLOYMENT_TARGET[arch=*]" = DRIVEKIT19.0;
+				"DSTROOT[sdk=*]" = "/tmp/$(PROJECT_NAME).dst";
+				ENABLE_ON_DEMAND_RESOURCES = YES;
+				ENABLE_PREVIEWS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = YES;
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -526,6 +554,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_VERSION = YES;
+				"GCC_VERSION[arch=*]" = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -539,21 +569,59 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				GENERATE_PROFILING_CODE = YES;
+				"GENERATE_PROFILING_CODE[sdk=*]" = YES;
+				INCLUDED_SOURCE_FILE_NAMES = YES;
+				"INCLUDED_SOURCE_FILE_NAMES[arch=*]" = YES;
+				"INSTALL_GROUP[sdk=*]" = "$(GROUP)";
+				"INSTALL_MODE_FLAG[sdk=*]" = "u+w,go-w,a+rX";
+				"INSTALL_OWNER[sdk=*]" = "$(USER)";
+				INSTALL_PATH = YES;
+				"INSTALL_PATH[sdk=*]" = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				"IPHONEOS_DEPLOYMENT_TARGET[arch=*]" = 13.4;
+				MACOSX_DEPLOYMENT_TARGET = macos10.15;
+				"MACOSX_DEPLOYMENT_TARGET[arch=*]" = macos10.15;
 				MARKETING_VERSION = 6.5;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				ON_DEMAND_RESOURCES_INITIAL_INSTALL_TAGS = YES;
+				ON_DEMAND_RESOURCES_PREFETCH_ORDER = YES;
+				RESOURCES_TARGETED_DEVICE_FAMILY = YES;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
+				"SDKROOT[arch=*]" = iphoneos;
+				"SKIP_INSTALL[sdk=*]" = NO;
+				STRIPFLAGS = YES;
+				"STRIPFLAGS[sdk=*]" = YES;
+				"STRIP_INSTALLED_PRODUCT[sdk=*]" = YES;
+				"STRIP_STYLE[sdk=*]" = all;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				"TVOS_DEPLOYMENT_TARGET[arch=*]" = "";
+				VALIDATE_WORKSPACE = YES;
+				VALIDATE_WORKSPACE_SKIPPED_SDK_FRAMEWORKS = YES;
+				"VALID_ARCHS[sdk=*]" = "arm64 arm64e armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				"WATCHOS_DEPLOYMENT_TARGET[arch=*]" = "";
 			};
 			name = Debug;
 		};
 		4CD2C4AD1C5A615600975A7A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"ADDITIONAL_SDKS[arch=*]" = "";
+				"ALTERNATE_GROUP[sdk=*]" = "$(INSTALL_GROUP)";
+				"ALTERNATE_MODE[sdk=*]" = "$(INSTALL_MODE_FLAG)";
+				"ALTERNATE_OWNER[sdk=*]" = "$(INSTALL_OWNER)";
+				ALTERNATE_PERMISSIONS_FILES = "$(INSTALL_PERMISSION_FILES)";
+				"ALTERNATE_PERMISSIONS_FILES[sdk=*]" = "$(INSTALL_PERMISSION_FILES)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD)";
+				ASSET_PACK_MANIFEST_URL_PREFIX = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				"BUILD_VARIANTS[sdk=*]" = normal;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -583,13 +651,33 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				COPY_HEADERS_RUN_UNIFDEF = YES;
+				"COPY_HEADERS_UNIFDEF_FLAGS[sdk=*]" = "";
+				COPY_PHASE_STRIP = YES;
+				"COPY_PHASE_STRIP[sdk=*]" = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				"DEBUG_INFORMATION_FORMAT[sdk=*]" = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				"DEPLOYMENT_LOCATION[sdk=*]" = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				"DEPLOYMENT_POSTPROCESSING[sdk=*]" = YES;
+				DEVELOPMENT_ASSET_PATHS = YES;
+				DRIVERKIT_DEPLOYMENT_TARGET = DRIVEKIT19.0;
+				"DRIVERKIT_DEPLOYMENT_TARGET[arch=*]" = DRIVEKIT19.0;
+				"DSTROOT[sdk=*]" = "/tmp/$(PROJECT_NAME).dst";
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_ON_DEMAND_RESOURCES = YES;
+				ENABLE_PREVIEWS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = YES;
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_VERSION = YES;
+				"GCC_VERSION[arch=*]" = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -603,15 +691,43 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				GENERATE_PROFILING_CODE = YES;
+				"GENERATE_PROFILING_CODE[sdk=*]" = YES;
+				INCLUDED_SOURCE_FILE_NAMES = YES;
+				"INCLUDED_SOURCE_FILE_NAMES[arch=*]" = YES;
+				"INSTALL_GROUP[sdk=*]" = "$(GROUP)";
+				"INSTALL_MODE_FLAG[sdk=*]" = "u+w,go-w,a+rX";
+				"INSTALL_OWNER[sdk=*]" = "$(USER)";
+				INSTALL_PATH = YES;
+				"INSTALL_PATH[sdk=*]" = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				"IPHONEOS_DEPLOYMENT_TARGET[arch=*]" = 13.4;
+				MACOSX_DEPLOYMENT_TARGET = macos10.15;
+				"MACOSX_DEPLOYMENT_TARGET[arch=*]" = macos10.15;
 				MARKETING_VERSION = 6.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				ON_DEMAND_RESOURCES_INITIAL_INSTALL_TAGS = YES;
+				ON_DEMAND_RESOURCES_PREFETCH_ORDER = YES;
+				RESOURCES_TARGETED_DEVICE_FAMILY = YES;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
+				"SDKROOT[arch=*]" = iphoneos;
+				"SKIP_INSTALL[sdk=*]" = NO;
+				STRIPFLAGS = YES;
+				"STRIPFLAGS[sdk=*]" = YES;
+				"STRIP_INSTALLED_PRODUCT[sdk=*]" = YES;
+				"STRIP_STYLE[sdk=*]" = all;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				"TVOS_DEPLOYMENT_TARGET[arch=*]" = "";
 				VALIDATE_PRODUCT = YES;
+				VALIDATE_WORKSPACE = YES;
+				VALIDATE_WORKSPACE_SKIPPED_SDK_FRAMEWORKS = YES;
+				"VALID_ARCHS[sdk=*]" = "arm64 arm64e armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				"WATCHOS_DEPLOYMENT_TARGET[arch=*]" = "";
 			};
 			name = Release;
 		};
@@ -637,6 +753,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = NO;
 				GCC_WARN_SIGN_COMPARE = NO;
@@ -672,6 +789,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = NO;
 				GCC_WARN_SIGN_COMPARE = NO;
@@ -708,6 +826,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_CHAR_IS_UNSIGNED_CHAR = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
@@ -745,6 +864,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_CHAR_IS_UNSIGNED_CHAR = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
@@ -768,7 +888,7 @@
 				4CD2C4AD1C5A615600975A7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		4CD2C4AE1C5A615600975A7A /* Build configuration list for PBXNativeTarget "IQKeyboardManager" */ = {
 			isa = XCConfigurationList;
@@ -777,7 +897,7 @@
 				4CD2C4B01C5A615600975A7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		4CD597111D1C5EBE00AB28D3 /* Build configuration list for PBXNativeTarget "IQKeyboardManagerSwift" */ = {
 			isa = XCConfigurationList;
@@ -786,7 +906,7 @@
 				4CD597131D1C5EBE00AB28D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
