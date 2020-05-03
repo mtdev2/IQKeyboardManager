@@ -1,83 +1,83 @@
-//
-//  IQKeyboardManager.swift
-// https://github.com/hackiftekhar/IQKeyboardManager
-// Copyright (c) 2013-16 Iftekhar Qurashi.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+
+  IQKeyboardManager.swift
+ https:/github.com/hackiftekhar/IQKeyboardManager
+ Copyright (c) 2013-16 Iftekhar Qurashi.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
 
 import Foundation
 import CoreGraphics
 import UIKit
 import QuartzCore
 
-///---------------------
-/// MARK: IQToolbar tags
-///---------------------
 
-/**
-Codeless drop-in universal library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView. Neither need to write any code nor any setup required and much more. A generic version of KeyboardManagement. https://developer.apple.com/library/ios/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html
-*/
+ MARK: IQToolbar tags
+
+
+
+Codeless drop-in universal library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView. Neither need to write any code nor any setup required and much more. A generic version of KeyboardManagement. https:/developer.apple.com/library/ios/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html
+
 
 @objc public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
     
-    /**
+
     Default tag for toolbar with Done button   -1002.
-    */
+
     private static let  kIQDoneButtonToolbarTag         =   -1002
     
-    /**
+    /
     Default tag for toolbar with Previous/Next buttons -1005.
-    */
+
     private static let  kIQPreviousNextButtonToolbarTag =   -1005
 
-    /**
+
      Invalid point value.
-     */
+
     private static let  kIQCGPointInvalid = CGPoint.init(x: CGFloat.greatestFiniteMagnitude, y: CGFloat.greatestFiniteMagnitude)
 
-    ///---------------------------
-    ///  MARK: UIKeyboard handling
-    ///---------------------------
+
+      MARK: UIKeyboard handling
+
     
-    /**
+
     Enable/disable managing distance between keyboard and textField. Default is YES(Enabled when class loads in `+(void)load` method).
-    */
+
     @objc public var enable = false {
         
         didSet {
-            //If not enable, enable it.
-            if enable == true &&
-                oldValue == false {
-                //If keyboard is currently showing. Sending a fake notification for keyboardWillHide to retain view's original position.
+            If not enable, enable it.
+            if enable = true &
+                oldValue = false {
+                If keyboard is currently showing. Sending a fake notification for keyboardWillHide to retain view's original position.
                 if let notification = _kbShowNotification {
                     keyboardWillShow(notification)
                 }
                 showLog("Enabled")
-            } else if enable == false &&
-                oldValue == true {   //If not disable, desable it.
+            } else if enable = false &
+                oldValue == true {   If not disable, desable it.
                 keyboardWillHide(nil)
                 showLog("Disabled")
             }
         }
     }
     
-    private func privateIsEnabled() -> Bool {
+    private func privateIsEnabled() - Bool {
         
         var isEnabled = enable
         
@@ -90,14 +90,14 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
         } else {
             if var textFieldViewController = _textFieldView?.viewContainingController() {
                 
-                //If it is searchBar textField embedded in Navigation Bar
+                If it is searchBar textField embedded in Navigation Bar
                 if _textFieldView?.textFieldSearchBar() != nil, let navController = textFieldViewController as? UINavigationController, let topController = navController.topViewController {
                     textFieldViewController = topController
                 }
                 
-                if isEnabled == false {
+                if isEnabled = false {
                     
-                    //If viewController is kind of enable viewController class, then assuming it's enabled.
+                    If viewController is kind of enable viewController class, then assuming it's enabled.
                     for enabledClass in enabledDistanceHandlingClasses {
                         
                         if textFieldViewController.isKind(of: enabledClass) {
@@ -107,9 +107,9 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
                     }
                 }
                 
-                if isEnabled == true {
+                if isEnabled = true {
                     
-                    //If viewController is kind of disabled viewController class, then assuming it's disabled.
+                    If viewController is kind of disabled viewController class, then assuming it's disabled.
                     for disabledClass in disabledDistanceHandlingClasses {
                         
                         if textFieldViewController.isKind(of: disabledClass) {
@@ -118,12 +118,12 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
                         }
                     }
                     
-                    //Special Controllers
-                    if isEnabled == true {
+                    Special Controllers
+                    if isEnabled = true {
                         
                         let classNameString = NSStringFromClass(type(of: textFieldViewController.self))
                         
-                        //_UIAlertControllerTextFieldViewController
+                        _UIAlertControllerTextFieldViewController
                         if classNameString.contains("UIAlertController") && classNameString.hasSuffix("TextFieldViewController") {
                             isEnabled = false
                         }
@@ -135,9 +135,9 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
         return isEnabled
     }
     
-    /**
+
     To set keyboard distance from textField. can't be less than zero. Default is 10.0.
-    */
+
     @objc public var keyboardDistanceFromTextField: CGFloat {
         
         set {
@@ -149,65 +149,65 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
         }
     }
     
-    /**
+
      Boolean to know if keyboard is showing.
-     */
+
     @objc public var keyboardShowing: Bool {
         
         return _privateIsKeyboardShowing
     }
     
-    /**
+
      moved distance to the top used to maintain distance between keyboard and textField. Most of the time this will be a positive value.
-     */
+
     @objc public var movedDistance: CGFloat {
         
         return _privateMovedDistance
     }
     
-    /**
+
     Will be called then movedDistance will be changed
-     */
+
     @objc public var movedDistanceChanged: ((CGFloat) -> Void)?
 
-    /**
-    Returns the default singleton instance.
-    */
+
+    Returns the default singleton instance
+
     @objc public static let shared = IQKeyboardManager()
     
-    ///-------------------------
-    /// MARK: IQToolbar handling
-    ///-------------------------
+
+     MARK: IQToolbar handling
+
     
-    /**
-    Automatic add the IQToolbar functionality. Default is YES.
-    */
+
+    Automatic add the IQToolbar functionality Default is YES
+
     @objc public var enableAutoToolbar = true {
         
         didSet {
 
-            privateIsEnableAutoToolbar() ? addToolbarIfRequired() : removeToolbarIfRequired()
+            privateIsEnableAutoToolbar()  addToolbarIfRequired() : removeToolbarIfRequired()
 
-            let enableToolbar = enableAutoToolbar ? "Yes" : "NO"
+            let enableToolbar = enableAutoToolbar  "Yes" : "NO"
 
-            showLog("enableAutoToolbar: \(enableToolbar)")
+            showLog enableAutoToolbar: enableToolbar
         }
     }
     
-    private func privateIsEnableAutoToolbar() -> Bool {
+    private func privateIsEnableAutoToolbar() - Bool {
         
         var enableToolbar = enableAutoToolbar
         
-        if var textFieldViewController = _textFieldView?.viewContainingController() {
+        if var textFieldViewController = _textFieldView.viewContainingController() {
             
-            //If it is searchBar textField embedded in Navigation Bar
-            if _textFieldView?.textFieldSearchBar() != nil, let navController = textFieldViewController as? UINavigationController, let topController = navController.topViewController {
+            If it is searchBar textField embedded in Navigation Bar
+            if _textFieldView.textFieldSearchBar() = nil, let navController = textFieldViewController as UINavigationController, let topController = navController.topViewController {
                 textFieldViewController = topController
             }
 
-            if enableToolbar == false {
+            if enableToolbar = false {
                 
-                //If found any toolbar enabled classes then return.
+                If found any toolbar enabled classes then return.
                 for enabledClass in enabledToolbarClasses {
                     
                     if textFieldViewController.isKind(of: enabledClass) {
@@ -217,9 +217,9 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
                 }
             }
             
-            if enableToolbar == true {
+            if enableToolbar = true {
                 
-                //If found any toolbar disabled classes then return.
+                If found any toolbar disabled classes then return.
                 for disabledClass in disabledToolbarClasses {
                     
                     if textFieldViewController.isKind(of: disabledClass) {
@@ -228,13 +228,13 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
                     }
                 }
                 
-                //Special Controllers
-                if enableToolbar == true {
+                Special Controllers
+                if enableToolbar = true {
                     
                     let classNameString = NSStringFromClass(type(of: textFieldViewController.self))
                     
-                    //_UIAlertControllerTextFieldViewController
-                    if classNameString.contains("UIAlertController") && classNameString.hasSuffix("TextFieldViewController") {
+                    _UIAlertControllerTextFieldViewController
+                    if classNameString.contains("UIAlertController") & classNameString.hasSuffix("TextFieldViewController") {
                         enableToolbar = false
                     }
                 }
@@ -244,123 +244,123 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
         return enableToolbar
     }
 
-    /**
-     /**
+
+
      IQAutoToolbarBySubviews:   Creates Toolbar according to subview's hirarchy of Textfield's in view.
      IQAutoToolbarByTag:        Creates Toolbar according to tag property of TextField's.
      IQAutoToolbarByPosition:   Creates Toolbar according to the y,x position of textField in it's superview coordinate.
      
      Default is IQAutoToolbarBySubviews.
-     */
+
     AutoToolbar managing behaviour. Default is IQAutoToolbarBySubviews.
-    */
+
     @objc public var toolbarManageBehaviour = IQAutoToolbarManageBehaviour.bySubviews
 
-    /**
-    If YES, then uses textField's tintColor property for IQToolbar, otherwise tint color is default. Default is NO.
-    */
+
+    If YES, then uses textField's tintColor property for IQToolbar, otherwise tint color is default. Default is NO
+
     @objc public var shouldToolbarUsesTextFieldTintColor = false
     
-    /**
-    This is used for toolbar.tintColor when textfield.keyboardAppearance is UIKeyboardAppearanceDefault. If shouldToolbarUsesTextFieldTintColor is YES then this property is ignored. Default is nil and uses black color.
-    */
-    @objc public var toolbarTintColor: UIColor?
 
-    /**
-     This is used for toolbar.barTintColor. Default is nil.
-     */
-    @objc public var toolbarBarTintColor: UIColor?
+    This is used for toolbar.tintColor when textfield.keyboardAppearance is UIKeyboardAppearanceDefault If shouldToolbarUsesTextFieldTintColor is YES then this property is ignored. Default is nil and uses black color
 
-    /**
-     IQPreviousNextDisplayModeDefault:      Show NextPrevious when there are more than 1 textField otherwise hide.
-     IQPreviousNextDisplayModeAlwaysHide:   Do not show NextPrevious buttons in any case.
-     IQPreviousNextDisplayModeAlwaysShow:   Always show nextPrevious buttons, if there are more than 1 textField then both buttons will be visible but will be shown as disabled.
-     */
+    @objc public var toolbarTintColor: UIColor
+
+
+     This is used for toolbar.barTintColor Default is nil
+
+    @objc public var toolbarBarTintColor: UIColor
+
+
+     IQPreviousNextDisplayModeDefault:      Show NextPrevious when there are more than 1 textField otherwise hide
+     IQPreviousNextDisplayModeAlwaysHide:   Do not show NextPrevious buttons in any case
+     IQPreviousNextDisplayModeAlwaysShow:   Always show nextPrevious buttons, if there are more than 1 textField then both buttons will be visible but will be shown as disabled
+
     @objc public var previousNextDisplayMode = IQPreviousNextDisplayMode.default
 
-    /**
-     Toolbar previous/next/done button icon, If nothing is provided then check toolbarDoneBarButtonItemText to draw done button.
-     */
-    @objc public var toolbarPreviousBarButtonItemImage: UIImage?
-    @objc public var toolbarNextBarButtonItemImage: UIImage?
-    @objc public var toolbarDoneBarButtonItemImage: UIImage?
 
-    /**
-     Toolbar previous/next/done button text, If nothing is provided then system default 'UIBarButtonSystemItemDone' will be used.
-     */
-    @objc public var toolbarPreviousBarButtonItemText: String?
-    @objc public var toolbarPreviousBarButtonItemAccessibilityLabel: String?
-    @objc public var toolbarNextBarButtonItemText: String?
-    @objc public var toolbarNextBarButtonItemAccessibilityLabel: String?
-    @objc public var toolbarDoneBarButtonItemText: String?
-    @objc public var toolbarDoneBarButtonItemAccessibilityLabel: String?
+     Toolbar previous/next/done button icon, If nothing is provided then check toolbarDoneBarButtonItemText to draw done button
 
-    /**
-    If YES, then it add the textField's placeholder text on IQToolbar. Default is YES.
-    */
+    @objc public var toolbarPreviousBarButtonItemImage: UIImage
+    @objc public var toolbarNextBarButtonItemImage: UIImage
+    @objc public var toolbarDoneBarButtonItemImage: UIImage
+
+
+     Toolbar previous/next/done button text, If nothing is provided then system default 'UIBarButtonSystemItemDone' will be used
+
+    @objc public var toolbarPreviousBarButtonItemText: String
+    @objc public var toolbarPreviousBarButtonItemAccessibilityLabel: String
+    @objc public var toolbarNextBarButtonItemText: String
+    @objc public var toolbarNextBarButtonItemAccessibilityLabel: String
+    @objc public var toolbarDoneBarButtonItemText: String
+    @objc public var toolbarDoneBarButtonItemAccessibilityLabel: String
+
+
+    If YES, then it add the textField's placeholder text on IQToolbar. Default is YES
+
     @objc public var shouldShowToolbarPlaceholder = true
 
-    /**
-    Placeholder Font. Default is nil.
-    */
-    @objc public var placeholderFont: UIFont?
-    
-    /**
-     Placeholder Color. Default is nil. Which means lightGray
-     */
-    @objc public var placeholderColor: UIColor?
-    
-    /**
-     Placeholder Button Color when it's treated as button. Default is nil.
-     */
-    @objc public var placeholderButtonColor: UIColor?
 
-    ///--------------------------
-    /// MARK: UITextView handling
-    ///--------------------------
+    Placeholder Font Default is nil
+
+    @objc public var placeholderFont: UIFont
     
-    /** used to adjust contentInset of UITextView. */
+
+     Placeholder Color Default is nil Which means lightGray
+
+    @objc public var placeholderColor: UIColor
+    
+
+     Placeholder Button Color when it's treated as button Default is nil
+
+    @objc public var placeholderButtonColor: UIColor
+
+
+     MARK: UITextView handling
+
+    
+     used to adjust contentInset of UITextView
     private var         startingTextViewContentInsets = UIEdgeInsets()
     
-    /** used to adjust scrollIndicatorInsets of UITextView. */
+     used to adjust scrollIndicatorInsets of UITextView
     private var         startingTextViewScrollIndicatorInsets = UIEdgeInsets()
     
-    /** used with textView to detect a textFieldView contentInset is changed or not. (Bug ID: #92)*/
+     used with textView to detect a textFieldView contentInset is changed or not (Bug ID: #92
     private var         isTextViewContentInsetChanged = false
 
-    ///---------------------------------------
-    /// MARK: UIKeyboard appearance overriding
-    ///---------------------------------------
 
-    /**
-    Override the keyboardAppearance for all textField/textView. Default is NO.
-    */
+     MARK: UIKeyboard appearance overriding
+
+
+
+    Override the keyboardAppearance for all textField/textView Default is NO
+
     @objc public var overrideKeyboardAppearance = false
     
-    /**
-    If overrideKeyboardAppearance is YES, then all the textField keyboardAppearance is set using this property.
-    */
+
+    If overrideKeyboardAppearance is YES, then all the textField keyboardAppearance is set using this property
+
     @objc public var keyboardAppearance = UIKeyboardAppearance.default
 
-    ///-----------------------------------------------------------
-    /// MARK: UITextField/UITextView Next/Previous/Resign handling
-    ///-----------------------------------------------------------
 
-    /**
-    Resigns Keyboard on touching outside of UITextField/View. Default is NO.
-    */
+     MARK: UITextField/UITextView Next/Previous/Resign handling
+
+
+
+    Resigns Keyboard on touching outside of UITextField/View Default is NO
+
     @objc public var shouldResignOnTouchOutside = false {
         
         didSet {
             resignFirstResponderGesture.isEnabled = privateShouldResignOnTouchOutside()
             
-            let shouldResign = shouldResignOnTouchOutside ? "Yes" : "NO"
+            let shouldResign = shouldResignOnTouchOutside  Yes : NO
             
-            showLog("shouldResignOnTouchOutside: \(shouldResign)")
+            showLog(shouldResignOnTouchOutside: (shouldResign)
         }
     }
     
-    /** TapGesture to resign keyboard on view's touch. It's a readonly property and exposed only for adding/removing dependencies if your added gesture does have collision with this one */
+     TapGesture to resign keyboard on view's touch It's a readonly property and exposed only for adding/removing dependencies if your added gesture does have collision with this one
     @objc lazy public var resignFirstResponderGesture: UITapGestureRecognizer = {
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapRecognized(_:)))
@@ -370,29 +370,29 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
         return tapGesture
     }()
     
-    /*******************************************/
+
     
     private func privateShouldResignOnTouchOutside() -> Bool {
         
         var shouldResign = shouldResignOnTouchOutside
         
-        let enableMode = _textFieldView?.shouldResignOnTouchOutsideMode
+        let enableMode = _textFieldView.shouldResignOnTouchOutsideMode
         
-        if enableMode == .enabled {
+        if enableMode = .enabled {
             shouldResign = true
-        } else if enableMode == .disabled {
+        } else if enableMode = .disabled {
             shouldResign = false
         } else {
-            if var textFieldViewController = _textFieldView?.viewContainingController() {
+            if var textFieldViewController = _textFieldView.viewContainingController() {
                 
-                //If it is searchBar textField embedded in Navigation Bar
-                if _textFieldView?.textFieldSearchBar() != nil, let navController = textFieldViewController as? UINavigationController, let topController = navController.topViewController {
+                If it is searchBar textField embedded in Navigation Bar
+                if _textFieldView.textFieldSearchBar() = nil, let navController = textFieldViewController as UINavigationController, let topController = navController.topViewController {
                     textFieldViewController = topController
                 }
 
-                if shouldResign == false {
+                if shouldResign = false {
                     
-                    //If viewController is kind of enable viewController class, then assuming shouldResignOnTouchOutside is enabled.
+                    If viewController is kind of enable viewController class, then assuming shouldResignOnTouchOutside is enabled
                     for enabledClass in enabledTouchResignedClasses {
                         
                         if textFieldViewController.isKind(of: enabledClass) {
@@ -402,9 +402,9 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
                     }
                 }
                 
-                if shouldResign == true {
+                if shouldResign = true {
                     
-                    //If viewController is kind of disable viewController class, then assuming shouldResignOnTouchOutside is disable.
+                    If viewController is kind of disable viewController class, then assuming shouldResignOnTouchOutside is disable
                     for disabledClass in disabledTouchResignedClasses {
                         
                         if textFieldViewController.isKind(of: disabledClass) {
@@ -413,8 +413,8 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
                         }
                     }
                     
-                    //Special Controllers
-                    if shouldResign == true {
+                    Special Controllers
+                    if shouldResign = true {
                         
                         let classNameString = NSStringFromClass(type(of: textFieldViewController.self))
                         
