@@ -33,7 +33,7 @@
 /**
  Set textView's placeholder text. Default is nil.
  */
-@property(nullable, nonatomic,copy) IBInspectable NSString    *placeholder;
+@property(nullable, nonatomic,copy) IBInspectable NSString    *placeholder; 
 
 /**
  Set textView's placeholder attributed text. Default is nil.
